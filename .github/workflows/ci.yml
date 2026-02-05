@@ -1,0 +1,19 @@
+name: CI Pipeline DevOps
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Build da imagem Docker
+        run: docker build -t devops-app .
+
+      - name: Executar container
+        run: docker run devops-app
